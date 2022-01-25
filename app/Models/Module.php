@@ -36,6 +36,8 @@ class Module extends Model
             $filecount = count($files2);
         }
 
+        if($filecount>0) $filecount--;
+
         return $filecount==1 ? "$filecount file" : "$filecount files";
     }
 
@@ -43,7 +45,8 @@ class Module extends Model
         $path = public_path() . "/module_files/$this->id/";
         $zipcreated = $path . "/" . $this->subject->course_no . "_" . $this->title . ".zip";
 
-        unlink($zipcreated);
+        if(file_exists($zipcreated))
+            unlink($zipcreated);
 
         $zip = new ZipArchive;
 

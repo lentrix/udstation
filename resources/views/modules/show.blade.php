@@ -11,6 +11,11 @@
     </ol>
 </nav>
 
+<div class="float-right">
+    <a href="{{url('/modules/' . $module->id . '/edit')}}" class="btn btn-success">Edit Module</a>
+    @include('modules._delete-modal')
+</div>
+
 <h1>{{$module->title}}</h1>
 <hr>
 
@@ -60,7 +65,6 @@
             </li>
         </ul>
 
-        <a href="{{url('/subjects/' . $module->subject_id . '/module/' . $module->id . "/edit")}}" class="btn btn-info">Update Module</a>
         <hr>
 
 

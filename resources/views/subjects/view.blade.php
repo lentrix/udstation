@@ -9,6 +9,11 @@
     </ol>
 </nav>
 
+<div class="float-right">
+    <a href="{{url('/subjects/' . $subject->id . '/edit')}}" class="btn btn-success">Edit Subject</a>
+    @include('subjects._delete-modal')
+</div>
+
 <h1>{{$subject->course_no}}</h1>
 <div>{{$subject->description}}</div>
 <hr>

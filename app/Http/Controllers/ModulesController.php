@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Folder;
 use App\Models\Module;
 use App\Models\Subject;
 use Illuminate\Http\Request;
@@ -78,5 +79,34 @@ class ModulesController extends Controller
         $module->pack();
 
         return back()->with('Info',"$file has been deleted.");
+    }
+
+    public function edit(Module $module) {
+        return view('modules.edit',['module'=>$module]);
+    }
+
+    public function update(Module $module, Request $request) {
+        $request->validate([
+            'title' => 'string|required',
+            'date_from' => 'date|required',
+            'date_to' => 'date|required'
+        ]);
+
+        $module->update($request->all());
+
+        return redirect('/modules/' . $module->id)->with('Info','This module has been updated.');
+    }
+
+    public function delete(Module $module) {
+
+        $title = $module->title;
+        $subjectId = $module->subject_id;
+
+        $path = public_path() . "/module_files/$module->id/";
+        Folder::delete_directory($path);
+
+        $module->delete();
+
+        return redirect('/subjects/' . $subjectId)->with('Info',"The module entitiled $title has been deleted");
     }
 }
