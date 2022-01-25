@@ -18,6 +18,7 @@ class CreateSubjectsTable extends Migration
             $table->bigInteger('user_id')->unsigned();
             $table->string("course_no");
             $table->string('description');
+            $table->string('schedule');
             $table->timestamps();
         });
     }

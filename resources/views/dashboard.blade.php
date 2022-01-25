@@ -11,7 +11,11 @@
     @foreach($user->subjects as $subject)
     <a href="{{url('/subjects/' . $subject->id)}}" class="card subject bg-info shadow nav-link text-white">
         <h3 class="title">{{$subject->course_no}}</h3>
-        <p class="font-weight-bold">{{$subject->description}}</p>
+        <div class="mb-2">
+            <div class="font-weight-bold">{{$subject->description}}</div>
+            <div class="font-italic">{{$subject->schedule}}</div>
+        </div>
+
         <div>Number of Modules: {{$subject->moduleCount}}</div>
     </a>
     @endforeach

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Subject;
 use App\Models\User;
 use Illuminate\Http\Request;
 
@@ -52,5 +53,14 @@ class SiteController extends Controller
         ]);
 
         return back()->with('Info',"The user account of $request->full_name has been created.");
+    }
+
+    public function search(Request $request) {
+        $request->validate(['search_key'=>'string|required']);
+
+        $subjects = Subject::where('course_no', 'like', "%$request->search_key%")
+                ->orWhere('description','like',"%$request->search_key%")->get();
+
+        return view('home',['subjects'=>$subjects,'key'=>$request->search_key]);
     }
 }

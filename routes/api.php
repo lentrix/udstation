@@ -1,5 +1,6 @@
 <?php
 
+use App\Models\Subject;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -16,4 +17,12 @@ use Illuminate\Support\Facades\Route;
 
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
+});
+
+Route::get('/search',function(Request $request) {
+    $key = $request->search_key;
+    $subjects = Subject::where('course_no', 'like', "%$key%")
+        ->orWhere('description','like',"%$key%")->get();
+
+    return response()->json($subjects);
 });

@@ -20,11 +20,13 @@ class SubjectsController extends Controller
         $request->validate([
             'course_no' => 'string|required',
             'description' => 'string|required',
+            'schedule' => 'string|required',
         ]);
 
         Subject::create([
             'course_no' => $request->course_no,
             'description' => $request->description,
+            'schedule' => $request->schedule,
             'user_id' => auth()->user()->id,
         ]);
 

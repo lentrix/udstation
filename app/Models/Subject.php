@@ -9,7 +9,7 @@ class Subject extends Model
 {
     // use HasFactory;
 
-    protected $fillable = ['user_id','course_no','description'];
+    protected $fillable = ['user_id','course_no','description','schedule'];
 
     public function user() {
         return $this->belongsTo('App\Models\User');
@@ -17,5 +17,9 @@ class Subject extends Model
 
     public function modules() {
         return $this->hasMany('App\Models\Module');
+    }
+
+    public function getModuleCountAttribute() {
+        return $this->modules->count();
     }
 }

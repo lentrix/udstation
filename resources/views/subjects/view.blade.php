@@ -18,7 +18,8 @@
     @foreach($subject->modules as $module)
     <a href="{{url('/modules/' . $module->id)}}" class="card subject bg-info shadow nav-link text-white">
         <h3 class="title">{{$module->title}}</h3>
-        <p class="font-weight-bold">{{$module->date_from}}-{{$module->date_to}}</p>
+        <p class="font-weight-bold">{{$module->date_from->format('M d, Y')}} - {{$module->date_to->format('M d, Y')}}</p>
+        <p class="font-italic">{{$module->fileCount}}.</p>
 
     </a>
     @endforeach

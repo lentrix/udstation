@@ -18,6 +18,11 @@
         {!! Form::text("description", null, ['class'=>'form-control']) !!}
     </div>
 
+    <div class="form-group">
+        {!! Form::label("schedule", "Schedule") !!}
+        {!! Form::text("schedule", null, ['class'=>'form-control']) !!}
+    </div>
+
     <button class="btn btn-primary w-50">
         Create Subject
     </button>

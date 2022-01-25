@@ -33,6 +33,11 @@ class ModulesController extends Controller
         $files = [];
 
         $path = public_path() . "/module_files/$module->id/";
+
+        if(!file_exists($path)) {
+            mkdir($path);
+        }
+
         $dir = opendir($path);
 
         while($file = readdir($dir)) {
@@ -59,6 +64,8 @@ class ModulesController extends Controller
 
         $file->move($destination, $file->getClientOriginalName());
 
+        $module->pack();
+
         return back()->with('Info','File uploaded');
     }
 
@@ -67,6 +74,8 @@ class ModulesController extends Controller
         if(file_exists($fullPath)) {
             unlink($fullPath);
         }
+
+        $module->pack();
 
         return back()->with('Info',"$file has been deleted.");
     }

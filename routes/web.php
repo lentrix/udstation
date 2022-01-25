@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\ModulesController;
+use App\Http\Controllers\PublicController;
 use App\Http\Controllers\SiteController;
 use App\Http\Controllers\SubjectsController;
 use App\Http\Controllers\TeacherController;
@@ -18,8 +19,10 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('base');
+    return view('home');
 });
+
+Route::post('/',[SiteController::class, 'search']);
 
 Route::get('/login',[SiteController::class,'loginForm'])->name('login');
 Route::post('/login',[SiteController::class, 'login']);
@@ -29,13 +32,15 @@ Route::post('/register',[SiteController::class, 'register']);
 
 Route::get('/dashboard', [TeacherController::class, 'dashboard']);
 
+Route::get('/subjects/create',[SubjectsController::class, 'create']);
 Route::get('/subjects/{subject}/modules/create', [ModulesController::class, 'create']);
 Route::post('/subjects/{subject}/modules', [ModulesController::class, 'store']);
+Route::get('/subjects/{subject}',[SubjectsController::class, 'show']);
+Route::post('/subjects',[SubjectsController::class,'store']);
+
 Route::get('/modules/{module}', [ModulesController::class, 'show']);
 Route::post('/modules/{module}/add-file',[ModulesController::class, 'upload']);
 Route::get('/modules/{module}/delete-file/{file}', [ModulesController::class, 'deleteFile']);
 
-Route::get('/subjects/{subject}',[SubjectsController::class, 'show']);
-Route::get('/subjects/create',[SubjectsController::class, 'create']);
-Route::post('/subjects',[SubjectsController::class,'store']);
-
+Route::get('/public/subjects/{subject}', [PublicController::class, 'showSubject']);
+Route::get('/public/modules/{module}', [PublicController::class, 'showModule']);
