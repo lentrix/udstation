@@ -1,10 +1,12 @@
 <?php
 
+use App\Http\Controllers\ActivityController;
 use App\Http\Controllers\ModulesController;
 use App\Http\Controllers\PublicController;
 use App\Http\Controllers\SiteController;
 use App\Http\Controllers\SubjectsController;
 use App\Http\Controllers\TeacherController;
+use App\Models\Activity;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -54,3 +56,7 @@ Route::get('/modules/{module}', [ModulesController::class, 'show']);
 
 Route::get('/public/subjects/{subject}', [PublicController::class, 'showSubject']);
 Route::get('/public/modules/{module}', [PublicController::class, 'showModule']);
+
+Route::post('/activities',[ActivityController::class,'store']);
+Route::put('/activities/{activity}',[ActivityController::class, 'update']);
+Route::delete('/activities/{activity}',[ActivityController::class,'delete']);

@@ -52,6 +52,24 @@
                 @endforeach
             </tbody>
         </table>
+
+        <div class="float-right">
+            @include('activities._create-modal')
+        </div>
+        <h3>Activities</h3>
+        <hr>
+        @foreach($module->activities as $activity)
+            <div class="card bg-light mb-3">
+                <div class="card-body">
+                    <h5>{{$activity->title}}</h5>
+                    <div>{{$activity->description}}</div>
+                </div>
+                <div class="card-footer">
+                    @include('activities._delete-modal',['activity'=>$activity])
+                    @include('activities._edit-modal', ['activity'=>$activity])
+                </div>
+            </div>
+        @endforeach
     </div>
     <div class="col-md-4">
         <ul class="list-group mb-3">

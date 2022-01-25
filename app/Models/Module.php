@@ -21,6 +21,10 @@ class Module extends Model
         return $this->belongsTo('App\Models\Subject');
     }
 
+    public function activities() {
+        return $this->hasMany('App\Models\Activity');
+    }
+
     public function getFolderPathAttribute() {
         return "to follow...";
     }

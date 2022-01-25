@@ -9,6 +9,8 @@ class Folder extends Model
     public static function delete_directory($dirname) {
         if (is_dir($dirname))
           $dir_handle = opendir($dirname);
+        else
+          return back()->with('Error',"Folder $dirname does not exists");
 
         if (!$dir_handle)
             return false;
