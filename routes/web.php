@@ -56,6 +56,7 @@ Route::get('/modules/{module}', [ModulesController::class, 'show']);
 
 Route::get('/public/subjects/{subject}', [PublicController::class, 'showSubject']);
 Route::get('/public/modules/{module}', [PublicController::class, 'showModule']);
+Route::post('/public/upload-activity/{activity}',[PublicController::class, 'uploadActivity']);
 
 Route::post('/activities',[ActivityController::class,'store']);
 Route::put('/activities/{activity}',[ActivityController::class, 'update']);
