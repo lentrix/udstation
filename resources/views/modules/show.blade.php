@@ -67,12 +67,19 @@
                 <div class="card-footer">
                     @include('activities._delete-modal',['activity'=>$activity])
                     @include('activities._edit-modal', ['activity'=>$activity])
+                    <a href="{{url('/activities/' . $activity->id . '/download')}}" target="_blank" class="btn btn-info">
+                        Download Submissions
+                    </a>
+                    {{$activity->file_count}}
                 </div>
             </div>
         @endforeach
     </div>
     <div class="col-md-4">
         <ul class="list-group mb-3">
+            <li class="list-group-item bg-info text-white font-weight-bold">
+                Subject Details
+            </li>
             <li class="list-group-item">
                 <strong>{{$module->subject->course_no}}</strong>
             </li>

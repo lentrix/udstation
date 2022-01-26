@@ -58,6 +58,8 @@ Route::get('/public/subjects/{subject}', [PublicController::class, 'showSubject'
 Route::get('/public/modules/{module}', [PublicController::class, 'showModule']);
 Route::post('/public/upload-activity/{activity}',[PublicController::class, 'uploadActivity']);
 
-Route::post('/activities',[ActivityController::class,'store']);
+Route::get('/activities/{activity}/download', [ActivityController::class, 'downloadSubmissions']);
 Route::put('/activities/{activity}',[ActivityController::class, 'update']);
 Route::delete('/activities/{activity}',[ActivityController::class,'delete']);
+Route::post('/activities',[ActivityController::class,'store']);
+

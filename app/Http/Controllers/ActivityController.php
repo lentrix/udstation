@@ -51,4 +51,9 @@ class ActivityController extends Controller
 
         return redirect('/modules/' . $moduleId)->with('Info','An activity has been deleted.');
     }
+
+    public function downloadSubmissions(Activity $activity) {
+        $activity->pack();
+        return redirect('/activity_files/' . $activity->id . '/' . $activity->module->subject->course_no . '_' . $activity->title . '.zip');
+    }
 }
