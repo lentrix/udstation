@@ -15,4 +15,17 @@ class PublicController extends Controller
     public function showModule(Module $module) {
         return view('public.modules.view',['module'=>$module]);
     }
+    
+    public function uploadActivity(Activity $activity, Request $request) {
+        $request->validate([
+            'lname' => 'string|required',
+            'fname' => 'string|required',
+            'file' => 'file|required'
+        ]);
+        
+        $file = $request->file("file");
+        
+        $path = public_path() . '/activity_files/$activity->id/';
+        $filename = $request->lname . '_' . $request->fname . $file->get6
+    }
 }
