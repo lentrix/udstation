@@ -18,5 +18,22 @@
             Download Module
         </a>
     </div>
+    <div class="col-md-8">
+        <h4>Activities</h4>
+        <hr>
+        @foreach($module->activities as $activity)
+        
+        <div class="card shadow mb-3">
+            <div class="card-body">
+                <div class="float-right">
+                    @include('public.modules._upload-modal',['activity'=>$activity])
+                </div>
+                <h6>{{$activity->title}}</h6>
+                <div>Description: {{$activity->description}}</div>
+            </div>
+        </div>
+        
+        @endforeach
+    </div>
 </div>
 @endsection

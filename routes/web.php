@@ -55,6 +55,7 @@ Route::delete('/modules/{module}',[ModulesController::class, 'delete']);
 Route::get('/modules/{module}', [ModulesController::class, 'show']);
 
 Route::get('/public/subjects/{subject}', [PublicController::class, 'showSubject']);
+Route::get('/public/activities/{activity}/upload', [PublicController::class, 'uploadActivity']);
 Route::get('/public/modules/{module}', [PublicController::class, 'showModule']);
 
 Route::post('/activities',[ActivityController::class,'store']);
