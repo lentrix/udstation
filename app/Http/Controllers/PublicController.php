@@ -16,13 +16,18 @@ class PublicController extends Controller
     public function showModule(Module $module) {
         return view('public.modules.view',['module'=>$module]);
     }
+<<<<<<< HEAD
 
+=======
+    
+>>>>>>> 8fbfa6a4d71bd87b0489390a566a64a5233e902e
     public function uploadActivity(Activity $activity, Request $request) {
         $request->validate([
             'lname' => 'string|required',
             'fname' => 'string|required',
             'file' => 'file|required'
         ]);
+<<<<<<< HEAD
 
         $file = $request->file("file");
 
@@ -32,5 +37,12 @@ class PublicController extends Controller
         $file->move($path, $filename);
 
         return redirect('/public/modules/' . $activity->module_id)->with('Info','Your submission has been uploaded.');
+=======
+        
+        $file = $request->file("file");
+        
+        $path = public_path() . '/activity_files/$activity->id/';
+        $filename = $request->lname . '_' . $request->fname . $file->get6
+>>>>>>> 8fbfa6a4d71bd87b0489390a566a64a5233e902e
     }
 }
