@@ -22,31 +22,17 @@
         <h4>Activities</h4>
         <hr>
         @foreach($module->activities as $activity)
-<<<<<<< HEAD
-
-=======
-        
->>>>>>> 8fbfa6a4d71bd87b0489390a566a64a5233e902e
         <div class="card shadow mb-3">
             <div class="card-body">
                 <div class="float-right">
                     @include('public.modules._upload-modal',['activity'=>$activity])
                 </div>
                 <h6>{{$activity->title}}</h6>
-<<<<<<< HEAD
                 <div>{{$activity->description}}</div>
             </div>
         </div>
     </div>
 
     @endforeach
-=======
-                <div>Description: {{$activity->description}}</div>
-            </div>
-        </div>
-        
-        @endforeach
-    </div>
->>>>>>> 8fbfa6a4d71bd87b0489390a566a64a5233e902e
 </div>
 @endsection

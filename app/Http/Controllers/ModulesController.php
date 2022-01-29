@@ -9,6 +9,11 @@ use Illuminate\Http\Request;
 
 class ModulesController extends Controller
 {
+
+    public function __construct() {
+        $this->middleware('auth');
+    }
+
     public function create(Subject $subject) {
         return view('modules.create',['subject'=>$subject]);
     }
@@ -102,8 +107,10 @@ class ModulesController extends Controller
         $title = $module->title;
         $subjectId = $module->subject_id;
 
-        $path = public_path() . "/module_files/$module->id/";
-        Folder::delete_directory($path);
+        $module_path = public_path() . "/module_files/$module->id/";
+        $activity_path = public_path() . "/activity_files/$module->id/";
+        Folder::delete_directory($module_path);
+        Folder::delete_directory($activity_path);
 
         $module->delete();
 

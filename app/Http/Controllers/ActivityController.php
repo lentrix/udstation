@@ -9,6 +9,10 @@ use Illuminate\Http\Request;
 
 class ActivityController extends Controller
 {
+    public function __construct() {
+        $this->middleware('auth');
+    }
+
     public function store(Request $request) {
         $request->validate([
             'title'=>'string|required',
@@ -21,7 +25,10 @@ class ActivityController extends Controller
             'description' => $request->description,
         ]);
 
-        mkdir(public_path() . "/activity_files/$request->module_id");
+        $path = public_path() . "/activity_files/$request->module_id";
+
+        if(!file_exists($path))
+            mkdir($path);
 
         return redirect('/modules/' . $request->module_id)->with('Info','A new activity has been created.');
     }
